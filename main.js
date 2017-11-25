@@ -13,7 +13,7 @@ console.log(linksQuantity);
 }
 
 
-function createLink() {
+function createLink(id) {
 	var new_link = document.createElement('a');
 		new_link.innerHTML = "новая ссылка";
 		new_link.href = 'http://google.com';
@@ -21,6 +21,15 @@ function createLink() {
 		new_link_div.id = container;
 		new_link_div.appendChild(new_link);
 	document.body.appendChild(new_link_div);
+	
+	var rem_link_button = document.createElement('button');
+		rem_link_button.innerHTML = "удалить ссылку";
+		new_link_div.appendChild(rem_link_button);
+
+		rem_link_button.addEventListener('click', function removeLink () {
+			new_link_div.removeChild(new_link);
+			new_link_div.removeChild(rem_link_button);
+		});
 }
 
 
