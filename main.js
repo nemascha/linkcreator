@@ -1,27 +1,45 @@
-var submitInputListener = document.getElementById('submit_input');
-	submitInputListener.addEventListener('click', createMultiLink);
+var submit_input_listener = document.getElementById('submit_input');
+	submit_input_listener.addEventListener('click', createNewLinks);
 
+var general_div = document.getElementById('general_container');
+	document.body.appendChild(general_div);
 
-function createMultiLink() {
-	var linksQuantity = document.getElementById('quantity_input').value;
-	for (var i = 1; i <= linksQuantity; i++) {
-		createLink();
+function createNewLinks() {
+	var links_quantity = document.getElementById('quantity_input').value;
+	for (var i = 1; i <= links_quantity; i++) {
+		createLink(i);
 	}
 
-console.log(linksQuantity);	
+	var div_del_button = document.createElement('button');
+		div_del_button.innerHTML = "удалить все ссылки";
+		div_del_button.classList.add('del-button');
+		document.body.appendChild(div_del_button);
+		
+		div_del_button.addEventListener('click', function () {
+			
+		});
+		
+
+console.log(links_quantity);	
+
+
+
 
 }
 
 
-function createLink(id) {
+function createLink(i) {
 	var new_link = document.createElement('a');
-		new_link.innerHTML = "новая ссылка";
+		new_link.classList.add('new-link');
+		new_link.innerHTML = 'новая ссылка' + ' ' + i;	
 		new_link.href = 'http://google.com';
+	
 	var new_link_div = document.createElement('div');
 		new_link_div.id = container;
+		new_link_div.classList.add('links-container');
 		new_link_div.appendChild(new_link);
-	document.body.appendChild(new_link_div);
-	
+		general_div.appendChild(new_link_div);
+
 	var rem_link_button = document.createElement('button');
 		rem_link_button.innerHTML = "удалить ссылку";
 		new_link_div.appendChild(rem_link_button);
@@ -30,6 +48,5 @@ function createLink(id) {
 			new_link_div.removeChild(new_link);
 			new_link_div.removeChild(rem_link_button);
 		});
+
 }
-
-
