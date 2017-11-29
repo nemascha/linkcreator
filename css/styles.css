@@ -19,7 +19,12 @@
 }
 
 .del-button {
-	margin-right: 40%;
-	margin-left: 45%;
-	margin-top: 10px;
+	display: block;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.del-link-button {
+	background-image: url();
 }
