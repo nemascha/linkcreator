@@ -45,6 +45,7 @@ function createLink(i) {
 	var rem_link_button = document.createElement('button');
 		rem_link_button.id = 'rem_button';
 		rem_link_button.classList.add('del-link-button');
+		rem_link_button.setAttribute('title', 'удалить ссылку');
 		rem_link_button.innerHTML = " ";
 		rem_link_button.appendChild(icon);
 		new_link_div.appendChild(rem_link_button);
