@@ -11,7 +11,11 @@
 .links-container {
 	display: flex;
 	justify-content: center;
+	flex-flow: row wrap;
 	margin-top: 10px;
+	max-width: 150px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .new-link {
@@ -26,5 +30,6 @@
 }
 
 .del-link-button {
-	background-image: url();
+	margin-right: 5px;
+	margin-bottom: 5px;
 }
