@@ -2,38 +2,39 @@ var submitInputListener = document.getElementById('submit_input');
 	submitInputListener.addEventListener('click', createNewLinks);
 
 
+	var allLinksRemButton = document.createElement('button');
+		allLinksRemButton.id = 'all_links_rem_button';
+		allLinksRemButton.classList.add('all-links-rem-button');
+		allLinksRemButton.innerHTML = 'удалить все ссылки';
+		document.querySelector('#general_container').appendChild(allLinksRemButton);
+		allLinksRemButton.style.display = 'none';
+		
+		allLinksRemButton.addEventListener('click', function () {
+			if (confirm('Вы действительно хотите удалить все ссылки?')) {
+				var allLinks = document.querySelectorAll('.new-link');
+				var allRemLinkButtons = document.querySelectorAll('.rem-link-button');
+					for (var i = 0; i < allLinks.length; i++){
+						allLinks[i].remove();
+						allRemLinkButtons[i].remove();
+					}
+			} 	
+				
+		});
+
+	
 function createNewLinks() {
-	var linksQuantity = document.getElementById('quantity_input').value;
+	
+	var linksQuantity = document.getElementById('links_quantity').value;
 	for (var i = 1; i <= linksQuantity; i++) {
 		createLink(i);
 	}
-
-	console.log(document.getElementById('all_links_del_button'));
-
-	if (! document.getElementById('all_links_del_button')) {
-		var allLinksDelButton = document.createElement('button');
-			allLinksDelButton.id = 'all_links_del_button';
-			allLinksDelButton.innerHTML = "удалить все ссылки";
-			allLinksDelButton.classList.add('del-button');
-			document.body.appendChild(allLinksDelButton);
 	
-		
-		allLinksDelButton.addEventListener('click', function () {
-			var allLinks = document.querySelectorAll('.new-link');
-			var allRemButtons = document.querySelectorAll('.del-link-button');
-				for (var i = 0; i < allLinks.length; i++){
-					allLinks[i].remove();
-					allRemButtons[i].remove();
-				}
+	allLinksRemButton.style.display = 'block';	
+	
 
-			allLinksDelButton.remove();
-				
-		});
-	}	
+console.log(linksQuantity);
 
-console.log(linksQuantity);	
-
-}
+}	
 
 
 function createLink(i) {
@@ -43,28 +44,29 @@ function createLink(i) {
 		newLink.innerHTML = 'новая ссылка' + ' ' + i;	
 		newLink.href = 'http://google.com';
 	
-	var newLinkContainer = document.querySelector('#container');
-		newLinkContainer.appendChild(newLink);
-		document.body.appendChild(newLinkContainer);
+	var generalContainer = document.querySelector('#general_container');
 
+	var newLinkContainer = document.createElement('div');
+		newLinkContainer.id = 'container';
+		newLinkContainer.classList.add('new-link-container');
+		
 	var icon = document.createElement('i');
 		icon.classList.add('fa', 'fa-trash-o');
 
-	var allLinksDelButton = document.createElement('button');
-		allLinksDelButton.innerHTML = "удалить все ссылки";
-		allLinksDelButton.classList.add('del-button');
-
 	var remLinkButton = document.createElement('button');
-		remLinkButton.id = 'rem_button';
-		remLinkButton.classList.add('del-link-button');
+		remLinkButton.id = 'rem_link_button';
+		remLinkButton.classList.add('rem-link-button');
 		remLinkButton.setAttribute('title', 'удалить ссылку' + ' ' + i);
 		remLinkButton.innerHTML = " ";
-		remLinkButton.appendChild(icon);
+		
+		document.body.appendChild(generalContainer);
+		generalContainer.appendChild(newLinkContainer);
+		newLinkContainer.appendChild(newLink);
 		newLinkContainer.appendChild(remLinkButton);
+		remLinkButton.appendChild(icon);
 
 		remLinkButton.addEventListener('click', function removeLink () {
-			newLink.remove();
-			remLinkButton.remove();
+			generalContainer.removeChild(newLinkContainer);
 		});
 
 }

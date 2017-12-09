@@ -8,7 +8,7 @@
 	margin-right: 5px;
 }
 
-.links-container {
+.new-link-container {
 	display: flex;
 	justify-content: center;
 	flex-flow: row wrap;
@@ -22,14 +22,12 @@
 	margin-right: 10px;
 }
 
-.del-button {
-	display: block;
+.all-links-rem-button {
 	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.del-link-button {
-	margin-right: 5px;
-	margin-bottom: 5px;
+.rem-link-button {
+	margin: 2px 0 5px 0;
 }
