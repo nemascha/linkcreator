@@ -38,11 +38,7 @@ function createLink(i) {
 		newLink.classList.add('new-link');
 		newLink.innerHTML = 'новая ссылка' + ' ' + i;	
 		newLink.href = 'http://google.com';
-
-		if (newLink.innerHTML) {
-			newLink.innerHTML = 'boo';
-		}
-
+		
 	var generalContainer = document.querySelector('#general-container');
 
 	var newLinkContainer = document.createElement('div');
