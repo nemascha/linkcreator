@@ -26,7 +26,6 @@ function createNewLinks() {
 	
 	allLinksRemButton.style.display = 'block';	
 	
-
 console.log(linksQuantity);
 
 }	
@@ -34,11 +33,11 @@ console.log(linksQuantity);
 
 function createLink(i) {
 	var newLink = document.createElement('a');
-		newLink.id = Date.now();
+		newLink.id = 'link' + gen.next().value;
 		newLink.classList.add('new-link');
-		newLink.innerHTML = 'новая ссылка' + ' ' + i;	
+		newLink.innerHTML = 'новая ссылка' + ' ' + gen.next().value;	
 		newLink.href = 'http://google.com';
-		
+
 	var generalContainer = document.querySelector('#general-container');
 
 	var newLinkContainer = document.createElement('div');
@@ -51,7 +50,7 @@ function createLink(i) {
 	var remLinkButton = document.createElement('button');
 		remLinkButton.id = 'rem-link-btn';
 		remLinkButton.classList.add('rem-link-button');
-		remLinkButton.setAttribute('title', 'удалить ссылку' + ' ' + i);
+		remLinkButton.setAttribute('title', 'удалить ссылку');
 		remLinkButton.innerHTML = " ";
 		
 		document.body.appendChild(generalContainer);
@@ -64,4 +63,19 @@ function createLink(i) {
 			newLinkContainer.remove();
 		});
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+	container = document.querySelector('#container');
+	button = document.querySelector('#all-links-rem-btn');
+});
+
+function* generator() {
+	var ident = 1;
+	while(true){
+		yield ident++;
+	}
+}
+
+var gen = generator();
 
