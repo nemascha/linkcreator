@@ -1,30 +1,43 @@
 var submitInputListener = document.getElementById('submit-input');
 	submitInputListener.addEventListener('click', createNewLinks);
 
-document.addEventListener('DOMContentLoaded', function () {
-			
-	allLinksRemButton = document.querySelector('#all-links-rem-btn');
-	allLinksRemButton.style.display = 'none';
+var generalContainer = document.querySelector('#general-container');
+
+var allLinksRemButton = document.querySelector('#all-links-rem-btn');
 	allLinksRemButton.addEventListener('click', function () {
-			if (confirm('Вы действительно хотите удалить все ссылки?')) {
-				var allLinksContainer = document.querySelector('#general-container');
-				allLinksContainer.innerHTML = '';
-			} 	
-		});
-});
-	
+		if (confirm('Вы действительно хотите удалить все ссылки?')) {
+			generalContainer.innerHTML = '';
+		}	
+
+		return updateAllLinksRemoveButton();
+
+	});
+
+function updateAllLinksRemoveButton () {
+
+	if(document.querySelector('.new-link')) {
+		allLinksRemButton.classList.remove('hidden');
+		allLinksRemButton.classList.add('all-links-rem-button');
+	} else {
+		allLinksRemButton.classList.remove('all-links-rem-button');
+		allLinksRemButton.classList.add('hidden');
+	}
+
+}
+
 function createNewLinks() {
-	
+
 	var linksQuantity = document.getElementById('links-quantity').value;
 	for (var i = 1; i <= linksQuantity; i++) {
 		createLink(i);
-	}
-	
-	allLinksRemButton.style.display = 'block';	
-	
-console.log(linksQuantity);
+	}	
 
+return updateAllLinksRemoveButton();
+
+console.log(linksQuantity);
+	
 }	
+
 
 function* generator() {
 	let ident = 1;
@@ -37,8 +50,6 @@ var gen = generator();
 
 function createLink(i) {
 	let id = gen.next().value;
-	
-	var generalContainer = document.querySelector('#general-container');	
 	
 	var newLinkContainer = document.createElement('div');
 		newLinkContainer.id = 'container';
@@ -67,6 +78,8 @@ function createLink(i) {
 
 		remLinkButton.addEventListener('click', function removeLink () {
 			newLinkContainer.remove();
+			
+			return updateAllLinksRemoveButton();
 		});
 
 }
