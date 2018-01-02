@@ -1,21 +1,26 @@
-var submitInputListener = document.getElementById('submit-input');
+var submitInputListener, generalContainer, allLinksRemButton;
+
+document.addEventListener('DOMContentLoaded', function () {
+	submitInputListener = document.getElementById('submit-input');
 	submitInputListener.addEventListener('click', createNewLinks);
 
-var generalContainer = document.querySelector('#general-container');
+	generalContainer = document.querySelector('#general-container');
 
-var allLinksRemButton = document.querySelector('#all-links-rem-btn');
+	allLinksRemButton = document.querySelector('#all-links-rem-btn');
 	allLinksRemButton.addEventListener('click', function () {
 		if (confirm('Вы действительно хотите удалить все ссылки?')) {
 			generalContainer.innerHTML = '';
 		}	
 
-		return updateAllLinksRemoveButton();
+		updateAllLinksRemoveButton();
 
 	});
 
+});
+
 function updateAllLinksRemoveButton () {
 
-	if(document.querySelector('.new-link')) {
+	if (document.querySelector('.new-link')) {
 		allLinksRemButton.classList.remove('hidden');
 		allLinksRemButton.classList.add('all-links-rem-button');
 	} else {
@@ -32,7 +37,7 @@ function createNewLinks() {
 		createLink(i);
 	}	
 
-return updateAllLinksRemoveButton();
+updateAllLinksRemoveButton();
 
 console.log(linksQuantity);
 	
